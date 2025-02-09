@@ -1,20 +1,9 @@
 import streamlit as st
 import tensorflow as tf
 import numpy as np
-import gdown
-import os
-
-# Google Drive model link
-drive_link = "https://drive.google.com/file/d/1n0Qp-JidjE6I4JpHryTEps0RO-EFNunC/view?usp=sharing"
 
 # Define the local model file name
-file = "poetry_model(3epoch).h5"
-
-# Check if model is already downloaded
-if not os.path.exists(file):
-    st.write("Downloading model from Google Drive...")
-    gdown.download(drive_link, file, quiet=False)
-    st.write("Model downloaded successfully!")
+file = "poetry_model_6_epoch.keras"
 
 # Load the trained model
 model = tf.keras.models.load_model(file)
