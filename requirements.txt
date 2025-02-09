@@ -1,6 +1,6 @@
 streamlit
-tensorflow
 numpy
 pandas
 gdown
-h5py
+tensorflow>=2.9
+h5py>=3.6
