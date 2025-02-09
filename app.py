@@ -37,8 +37,6 @@ def generate_poetry(seed_text, next_chars=50):
 # Streamlit UI
 import streamlit as st
 
-st.set_page_config(page_title="Romaan Urdu Poetry Generator", layout="centered")
-
 # Header Styling
 st.markdown("<h1 style='text-align: center; '>Roman Urdu Poetry Generator</h1>", unsafe_allow_html=True)
 st.markdown("<p style='text-align: center; font-size: 18px;'>Enter a phrase, and AI will generate poetry for you!</p>", unsafe_allow_html=True)
