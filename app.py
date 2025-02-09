@@ -1,6 +1,7 @@
 import streamlit as st
 import tensorflow as tf
 import numpy as np
+import os
 
 # Define the local model file name
 file = "poetry_model_6_epoch.keras"
