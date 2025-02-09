@@ -3,3 +3,4 @@ tensorflow
 numpy
 pandas
 gdown
+h5py
