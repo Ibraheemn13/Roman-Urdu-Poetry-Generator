@@ -3,23 +3,25 @@ import tensorflow as tf
 import numpy as np
 import os
 
-# Define the local model file name
+# model file name
 file = "poetry_model_6_epoch.keras"
 
-# Check if the file exists before loading
-if os.path.exists(file):
-    st.write("Model file found. Loading...")
-    try:
-        model = tf.keras.models.load_model(file, compile=False)  # Load model
-        st.write("Model loaded successfully!!!")
-        st.write(f"Model architecture: {model.summary()}")
-    except Exception as e:
-        st.error(f"Model loading failed: {e}")
-else:
-    st.error("Model file not found! Please check the file path.")
-    
-# Load the trained model
-#model = tf.keras.models.load_model(file, compile=False)
+# Cache the model to prevent reloading on every run
+@st.cache_resource
+def load_model():
+    if os.path.exists(file):
+        try:
+            model = tf.keras.models.load_model(file, compile=False)
+            return model
+        except Exception as e:
+            st.error(f"Model loading failed: {e}")
+            return None
+    else:
+        st.error("Model file not found! Please check the file path.")
+        return None
+
+# Load the trained model using cache
+model = load_model()
 
 # character mappings
 char_vocab = sorted(set("\n !',-.?DHTabcdefghijklmnopqrstuvwxyzñāēġīū۔Ḍḳ"))
@@ -29,6 +31,10 @@ index_to_char = {idx: char for idx, char in enumerate(char_vocab)}
 seq_length = 100
 
 def generate_poetry(seed_text, next_chars=50):
+    if model is None:
+        st.error("Model is not loaded. Cannot generate poetry.")
+        return ""
+        
     result = seed_text
     for _ in range(next_chars):
         encoded_input = [char_to_index.get(c, 0) for c in result[-seq_length:]]
@@ -57,8 +63,9 @@ with col2:
 
     if st.button("Generate Poetry"):
         generated_poetry = generate_poetry(seed_text, next_chars)
-        st.subheader("Generated Poetry:")
-        st.write(generated_poetry.replace("\n", "  \n"))
+        if generated_poetry:
+            st.subheader("Generated Poetry:")
+            st.write(generated_poetry.replace("\n", "  \n"))
 
 
 
