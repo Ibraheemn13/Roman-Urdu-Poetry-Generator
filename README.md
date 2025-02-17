@@ -1,7 +1,7 @@
 <a name="readme-top"></a>
 ## Roman Urdu Poetry Generator | Introduction
 
-Roman Urdu Poetry Generator is  I then deployed it on Vercel, making it publicly accessible.
+This an AI-powered Roman Urdu Poetry Generator using deep learning and GRU, capable of generating creative verses in real-time with Streamlit.
 
 #### Read More about it on MEDIUM: https://medium.com/@ibraheemn13/roman-urdu-poetry-generator-ccf6a836aa70
 
