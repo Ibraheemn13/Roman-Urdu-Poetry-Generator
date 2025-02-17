@@ -47,6 +47,7 @@ col1, col2, col3 = st.columns([1, 2, 1])
 
 with col2:
     seed_text = st.text_input("Enter a starting phrase:", placeholder="Type here...")
+    seed_text = seed_text.lower() if seed_text else ""
     
     next_chars = st.slider("Number of Characters to Generate:", min_value=50, max_value=500, step=10, value=200)
 
