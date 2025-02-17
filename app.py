@@ -9,13 +9,13 @@ file = "poetry_model_6_epoch.keras"
 # Check if the file exists before loading
 if os.path.exists(file):
     st.write("Model file found. Loading...")
-    model = tf.keras.models.load_model(file)
+    model = tf.keras.models.load_model(file, compile=False)
     st.write("Model loaded successfully!")
 else:
     st.error("Model file not found! Please check the file path.")
     
 # Load the trained model
-model = tf.keras.models.load_model(file, compile=False)
+#model = tf.keras.models.load_model(file, compile=False)
 
 # character mappings
 char_vocab = sorted(set("\n !',-.?DHTabcdefghijklmnopqrstuvwxyzñāēġīū۔Ḍḳ"))
