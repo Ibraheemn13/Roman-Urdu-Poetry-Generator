@@ -9,8 +9,12 @@ file = "poetry_model_6_epoch.keras"
 # Check if the file exists before loading
 if os.path.exists(file):
     st.write("Model file found. Loading...")
-    model = tf.keras.models.load_model(file, compile=False)
-    st.write("Model loaded successfully!")
+    try:
+        model = tf.keras.models.load_model(file, compile=False)  # Load model
+        st.write("Model loaded successfully!!!")
+        st.write(f"Model architecture: {model.summary()}")
+    except Exception as e:
+        st.error(f"Model loading failed: {e}")
 else:
     st.error("Model file not found! Please check the file path.")
     
